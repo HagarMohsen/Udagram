@@ -10,7 +10,7 @@ Whenever the developer pushes any code update the pipeline will be triggered.
 1. Install backend dependencies.
 1. Build frontend.
 1. Build backend.
-1. Deploy frontend to S3.
+1. Deploy frontend to S3. 
 1. Deploy backend to Elastic Beanstalk.
 1. sit the eb environment variables.
 
