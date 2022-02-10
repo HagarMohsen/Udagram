@@ -26,6 +26,8 @@ Tha app is linked with Circleci ti insure that every change and update in code w
 ### Success Pipeline
 ![Success Pipeline](https://user-images.githubusercontent.com/74413831/153218446-ee1ec08f-d470-4837-9bd0-6fd364fd90ad.png)
 
+### Success Pipeline at each new commit
+![Success Pipeline at commit](https://user-images.githubusercontent.com/74413831/153326438-ad1d50b6-a593-4dbc-a7aa-5978a206889c.png)
 
 ### Pipeline Environment Variables
 ![env](https://user-images.githubusercontent.com/74413831/153218512-54abfa3b-5f35-41ee-9215-3597b2cd8eed.png)
