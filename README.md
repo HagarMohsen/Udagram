@@ -1,5 +1,4 @@
-# Udagram  [![HagarMohsen](https://circleci.com/gh/HagarMohsen/UdagramProject.svg?style=shield)](https://app.circleci.com/pipelines/gh/HagarMohsen/UdagramProject)
-
+# Udagram  
 
 
 This application represents a social media app for posting photos like instagram. The application includes all the major components of a Full-Stack web application.
