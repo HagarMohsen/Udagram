@@ -1,10 +1,13 @@
+#indicating the version of the platform our pipeline should use.
 version: 2.1
 
+#set of instructions created by CircleCi that allow us to configure the pipeline(used to setup node.js or install the AWS CLI)
 orbs:
   node: circleci/node@5.0.0
   aws-cli: circleci/aws-cli@2.0.6
   eb: circleci/aws-elastic-beanstalk@2.0.1
-
+  
+#groups of commands that we want to run
 jobs:
   build:
     docker:
@@ -14,6 +17,8 @@ jobs:
       - checkout
       - aws-cli/setup
       - eb/setup
+      
+#restoring and saving cache for frontend dependancies
       - restore_cache:
           keys:
             - my-frontend-cache{{ checksum "package.json" }}
@@ -28,7 +33,7 @@ jobs:
             - Udagram/udagram-frontend             
 
 
-
+#restoring and saving cache for backend dependancies
       - restore_cache:
           keys:
             - my-backend-cache{{ checksum "package.json" }}
@@ -40,8 +45,10 @@ jobs:
           key:  my-backend-cache{{ checksum "package.json" }}  
           paths: 
             - node_modules
-            - Udagram/udagram-api  
-              
+            - Udagram/udagram-api 
+            
+            
+#Building and Deploying the App              
       - run:
           name: Building Front-End 
           command: npm run frontend:build
@@ -56,6 +63,8 @@ jobs:
           name: Deploy backend
           command: |
             npm run backend:deploy
+            
+#instructions about the order of the jobs            
 workflows:
   main:                  
     jobs:
