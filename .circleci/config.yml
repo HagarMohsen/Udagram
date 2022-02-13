@@ -64,7 +64,7 @@ jobs:
             
 #instructions about the order of the jobs            
 workflows:
-  main:                  
+  Build-Deploy:                  
     jobs:
       - build:  
           filters:
