@@ -18,14 +18,34 @@ jobs:
       - aws-cli/setup
       - eb/setup
       
-#Installing frontend and backend dependancies   
+#restoring and saving cache for frontend dependancies
+      - restore_cache:
+          keys:
+            - -v3-{{ checksum "udagram-frontend/package.json" }}
+            - -v3-      
       - run:
           name: Install frontend dependencies
-          command: npm run frontend:install                   
+          command: npm run frontend:install
+      - save_cache:
+          key:  -v3-{{ checksum "udagram-frontend/package.json" }}   
+          paths: 
+            - udagram-frontend/node_modules            
+
+
+#restoring and saving cache for backend dependancies
+      - restore_cache:
+          keys:
+            - -v4-{{ checksum "udagram-api/package.json" }} 
+            - -v4-                     
       - run:
           name: Install backend dependencies
           command: npm run backend:install
-
+      - save_cache:
+          key:  -v4-{{ checksum "udagram-api/package.json" }} 
+          paths: 
+            - udagram-api/node_modules 
+            
+            
 #Building and Deploying the App              
       - run:
           name: Building Front-End 
