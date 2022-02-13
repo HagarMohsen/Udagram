@@ -16,28 +16,32 @@ jobs:
       - eb/setup
       - restore_cache:
           keys:
-            - v1-npm-deps-{{ checksum "package.json" }}
+            - my-frontend-cache{{ checksum "package.json" }}
             - v1-npm-deps-      
       - run:
           name: Install frontend dependencies
-          command: |
-            npm run frontend:install
+          command: npm run frontend:install
       - save_cache:
-          key:  v1-npm-deps-   
+          key:  my-frontend-cache{{ checksum "package.json" }}     
           paths: 
-            - node_modules  
+            - node_modules 
+            - Udagram/udagram-frontend             
+
+
+
       - restore_cache:
           keys:
-            - v2-npm-deps-{{ checksum "package.json" }}
-            - v2-npm-deps-                      
+            - my-backend-cache{{ checksum "package.json" }}
+            - my-backend-cache                      
       - run:
           name: Install backend dependencies
-          command: |
-            npm run backend:install
+          command: npm run backend:install
       - save_cache:
-          key:  v2-npm-deps-   
+          key:  my-backend-cache{{ checksum "package.json" }}  
           paths: 
-            - node_modules    
+            - node_modules
+            - Udagram/udagram-api  
+              
       - run:
           name: Building Front-End 
           command: npm run frontend:build
