@@ -1,5 +1,4 @@
 version: 2.1
-
 orbs:
   node: circleci/node@5.0.0
   aws-cli: circleci/aws-cli@2.0.6
@@ -8,50 +7,28 @@ orbs:
 jobs:
   build:
     docker:
-      - image: 'cimg/base:stable'
+      - image: "cimg/base:stable"
     steps:
-      - node/install
       - checkout
+      - node/install
       - aws-cli/setup
       - eb/setup
-      - restore_cache:
-          keys:
-            - v1-npm-deps-{{ checksum "package.json" }}
-            - v1-npm-deps-      
       - run:
-          name: Install frontend dependencies
-          command: |
-            npm run frontend:install
-      - save_cache:
-          key:  v1-npm-deps-   
-          paths: 
-            - node_modules  
-      - restore_cache:
-          keys:
-            - v2-npm-deps-{{ checksum "package.json" }}
-            - v2-npm-deps-                      
+          name: Installing Frontend Dependencies
+          command: npm run frontend:install
       - run:
-          name: Install backend dependencies
-          command: |
-            npm run backend:install
-      - save_cache:
-          key:  v2-npm-deps-   
-          paths: 
-            - node_modules    
+          name: Installing Back-End Dependencies
+          command: npm run backend:install
       - run:
-          name: Deploy frontend
-          command: |
-            npm run frontend:deploy
+          name: Building Front-End 
+          command: npm run frontend:build
       - run:
-          name: Deploy backend
-          command: |
-            npm run backend:deploy
-workflows:
-  main:                    # workflow label
-    jobs:
-      - build:  
-          filters:
-            branches:
-               only:                
-                  - main
+          name: Building Back-End 
+          command: npm run backend:build
+      - run:
+          name: FrontEnt Deploy
+          command: npm run frontend:deploy
+      - run:
+          name: Backend Deploy 
+          command: npm run backend:deploy      
 
