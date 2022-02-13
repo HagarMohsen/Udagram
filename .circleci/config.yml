@@ -22,15 +22,14 @@ jobs:
       - restore_cache:
           keys:
             - my-frontend-cache{{ checksum "package.json" }}
-            - v1-npm-deps-      
+            - my-frontend-cache      
       - run:
           name: Install frontend dependencies
           command: npm run frontend:install
       - save_cache:
           key:  my-frontend-cache{{ checksum "package.json" }}     
           paths: 
-            - node_modules 
-            - Udagram/udagram-frontend             
+            - udagram-frontend/node_modules            
 
 
 #restoring and saving cache for backend dependancies
@@ -44,8 +43,7 @@ jobs:
       - save_cache:
           key:  my-backend-cache{{ checksum "package.json" }}  
           paths: 
-            - node_modules
-            - Udagram/udagram-api 
+            - udagram-api/node_modules 
             
             
 #Building and Deploying the App              
