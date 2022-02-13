@@ -1,5 +1,5 @@
 
-## Pipeline Infrastructure
+## Pipeline Runbook
 **pipeline overview**
 Whenever the developer pushes any code update the pipeline will be triggered.
 1. CircleCi is triggered to start the build.
