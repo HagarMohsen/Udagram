@@ -6,7 +6,7 @@ The app is hosted on Amazon AWS, and it uses the services: Elastic Beanstalk to 
 Tha app is linked with Circleci ti insure that every change and update in code will be deplyed automatically.
 
 ## Live Preview
-**You can access it by visiting the following Link:  [Udagram-API](http://myudagram-560402809124-bucket.s3-website-us-east-1.amazonaws.com)**
+**You can access it by visiting the following Link:  [Udagram Frontend](http://myudagram-560402809124-bucket.s3-website-us-east-1.amazonaws.com)**
 
 ![Live Preview](https://user-images.githubusercontent.com/74413831/153217747-4965889b-2b76-4fa9-89ae-1eeac1e3f610.png)
 
